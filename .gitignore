@@ -1,0 +1,43 @@
+# python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# project state
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+decisions.log
+*.log
+/tmp/
+/dev/shm-mock/
+
+# local config (keep default in repo, local overrides ignored)
+config.local.yml
+.env
+.env.*
+
+# editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ml artifacts (phase 5)
+*.pt
+*.pkl
+*.joblib
+models/

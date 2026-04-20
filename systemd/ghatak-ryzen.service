@@ -1,0 +1,22 @@
+[Unit]
+Description=ghatak-ryzen — CPU judgment daemon
+Documentation=https://github.com/Declan142/ghatak-ryzen/blob/main/BLUEPRINT.md
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/ghatak-ryzen run
+Restart=on-failure
+RestartSec=5
+Nice=19
+CPUAffinity=15
+IOSchedulingClass=idle
+
+# Give it only what it needs
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/.local/share/ghatak-ryzen %h/.config/ghatak-ryzen /dev/shm
+
+[Install]
+WantedBy=default.target

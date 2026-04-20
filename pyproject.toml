@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghatak-ryzen"
+version = "0.1.0-blueprint"
+description = "Claude-level judgment daemon for Linux CPU scheduling — Zen 2+ native"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Aditya Sharma", email = "wickedrita@gmail.com" }]
+requires-python = ">=3.11"
+
+dependencies = [
+    "psutil>=5.9",
+    "click>=8.1",
+    "rich>=13.7",
+    "pyyaml>=6.0",
+    "prometheus-client>=0.20",
+]
+
+[project.optional-dependencies]
+ebpf = ["bcc"]
+ml = ["scikit-learn>=1.4", "xgboost>=2.0"]
+dev = ["pytest>=8.0", "ruff>=0.4", "mypy>=1.10"]
+
+[project.scripts]
+ghatak-ryzen = "ghatak_ryzen.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Declan142/ghatak-ryzen"
+Blueprint = "https://github.com/Declan142/ghatak-ryzen/blob/main/BLUEPRINT.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
