@@ -64,7 +64,7 @@ ccd_conductor:
     ffmpeg:     { ccd: 0 }
     mediamtx:   { ccd: 0 }
     monitor.py: { ccd: 1 }
-    claude:     { ccd: 1 }
+    # claude removed — caused contention with monitor.py on CCD1
 
 governor:
   enabled: true

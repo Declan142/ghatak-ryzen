@@ -59,7 +59,10 @@ DEFAULT_CONFIG: dict[str, Any] = {
             "ffmpeg":     {"ccd": 0},
             "mediamtx":   {"ccd": 0},
             "monitor.py": {"ccd": 1},
-            "claude":     {"ccd": 1},
+            # NOTE: `claude` pattern removed 2026-04-22 — pinning Claude to CCD1
+            # created contention with trading monitor.py (also CCD1). Claude now
+            # floats on all 16 threads — better for parallel tool calls and
+            # avoids stealing cycles from monitor.py during trading hours.
         },
     },
     "governor": {
