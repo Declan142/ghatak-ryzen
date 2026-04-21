@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ghatak-ryzen"
-version = "0.1.0-blueprint"
+version = "0.1.0"
 description = "Claude-level judgment daemon for Linux CPU scheduling — Zen 2+ native"
 readme = "README.md"
 license = { file = "LICENSE" }

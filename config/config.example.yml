@@ -1,0 +1,83 @@
+# ghatak-ryzen — Phase 1 defaults. Copy to ~/.config/ghatak-ryzen/config.yml and edit.
+# Precedence: user config overlays built-in defaults.
+
+daemon:
+  tick_interval_sec: 1.0
+  judge_every_n_ticks: 10          # judges fire every 10s
+  log_level: info
+  db_path: /dev/shm/ghatak-ryzen.db
+  log_path: ~/.local/share/ghatak-ryzen/decisions.log
+  jsonl_path: ~/.local/share/ghatak-ryzen/decisions.jsonl
+  dry_run: true                    # SAFETY: flip to false only after 24h dry-run review
+
+bloat_judge:
+  enabled: true
+  suspend_after_idle_min: 10       # minutes of streak before SUSPEND
+  suspend_cpu_pct_min: 20.0        # only suspend if CPU% above this
+  value_score_zero_threshold: 0.01
+  kill_after_idle_hr: 2            # Phase 1: always off (enable_kill below)
+  kill_rss_threshold_gb: 1.0
+  enable_kill: false               # PHASE 1 MVP: never kill, only SUSPEND
+  immune_while_focused_min: 5
+  whitelist_exact:
+    - systemd
+    - init
+    - sshd
+    - Xorg
+    - gnome-shell
+    - gnome-terminal-
+    - dbus-daemon
+    - NetworkManager
+    - pulseaudio
+    - pipewire
+    - pipewire-pulse
+    - wireplumber
+    - gnome-session-b
+    - claude
+    - bash
+    - zsh
+    - fish
+    - code
+    - code-server
+    - cursor
+    - tmux
+    - tmux:server
+    - python3
+    - node
+    - ssh
+  whitelist_path_patterns:
+    - /home/aditya/ghatak-trader/
+    - /home/aditya/tools/factory-bot/
+    - /home/aditya/tools/sonnet-bridge/
+    - /home/aditya/tools/iphonecam/
+    - /home/aditya/tools/gp/
+    - /home/aditya/tools/ghatak-keylight/
+    - pocketbase
+    - mediamtx
+    - cloudflared
+    - code-server
+    - claude-code
+
+ccd_conductor:
+  enabled: true
+  pin_patterns:
+    ffmpeg:     { ccd: 0 }
+    mediamtx:   { ccd: 0 }
+    monitor.py: { ccd: 1 }
+    claude:     { ccd: 1 }
+
+governor:
+  enabled: true
+  actuate: false                    # Phase 1: log-only. Flip to true after polkit set up.
+  trading_hours:
+    days: [mon, tue, wed, thu, fri]
+    start: "09:14"
+    end:   "15:30"
+    tz: Asia/Kolkata
+    lock_ccd: 1
+    lock_governor: performance
+  night_quiet:
+    start: "01:00"
+    end:   "06:00"
+    max_freq_ghz: 2.2
+    governor: powersave
